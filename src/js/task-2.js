@@ -25,26 +25,32 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector("ul.gallery");
+const galleryContainer = document.querySelector("ul.gallery");
 
-const fragment = document.createDocumentFragment();
-
-const limitedImages = images.slice(0, 3);
-
-limitedImages.forEach((imageData) => {
-  const li = document.createElement("li");
+function createImageElement(src, alt, height, width) {
   const img = document.createElement("img");
-  img.src = imageData.url;
-  img.alt = imageData.alt;
-  li.appendChild(img);
-  fragment.appendChild(li);
+  img.src = src;
+  img.alt = alt;
+  img.height = height;
+  img.width = width;
+  return img;
+}
 
-  img.src = imageData.url;
-  img.alt = imageData.alt;
-  img.style.height = "360px"; // Встановлюємо висоту 360 пікселів
-  img.style.width = "300px";
-});
+function createGallery(imagesData) {
+  const fragment = document.createDocumentFragment();
 
-gallery.appendChild(fragment);
+  const limitedImages = imagesData.slice(0, 3);
 
-gallery.classList.add("flex-container");
+  limitedImages.forEach((image) => {
+    const li = document.createElement("li");
+    const img = createImageElement(image.url, image.alt, 360, 300);
+    li.appendChild(img);
+    fragment.appendChild(li);
+  });
+
+  galleryContainer.appendChild(fragment);
+
+  galleryContainer.classList.add("flex-container");
+}
+
+createGallery(images);
