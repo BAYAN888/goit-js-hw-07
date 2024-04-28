@@ -6,7 +6,7 @@ loginForm.addEventListener("submit", function (event) {
   const emailValue = loginForm.elements.email.value.trim();
   const passwordValue = loginForm.elements.password.value.trim();
 
-  if (!emailValue || !passwordValue) {
+  if (emailValue === "" || passwordValue === "") {
     alert("All form fields must be filled in");
     return;
   }

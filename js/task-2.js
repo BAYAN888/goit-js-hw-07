@@ -39,9 +39,7 @@ function createImageElement(src, alt, height, width) {
 function createGallery(imagesData) {
   const fragment = document.createDocumentFragment();
 
-  const limitedImages = imagesData.slice(0, 3);
-
-  limitedImages.forEach((image) => {
+  imagesData.forEach((image) => {
     const li = document.createElement("li");
     const img = createImageElement(image.url, image.alt, 360, 300);
     li.appendChild(img);
